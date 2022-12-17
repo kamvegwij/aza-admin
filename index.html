@@ -112,49 +112,75 @@
 				  <div class="container-fluid vh-100">
 					<div class="row justify-content-center">
 					  <div class="col-12 col-lg-9 col-xl-7">
-						<div class="card p-5">
+						<div class="card px-5 py-3">
 						  <div class="card-body p-4 p-md-5">
 							<h3 class="mb-4 pb-2 text-center">Game Update Details</h3>
 			  
 							<form action="">
-								<div class="row mb-2">
-								<div class="col-md-6">
-									<div class="form-outline">
-									<label class="form-label" for="firstName">Developer Name</label>
-									<input type="text" id="firstName" class="form-control" />
+								<div class="row mb-4">
+									<div class="col-md-6">
+										<div class="form-outline">
+										<label class="form-label" for="firstName">Developer Name</label>
+										<input type="text" id="firstName" class="form-control" />
+										</div>
 									</div>
-								</div>
-								
-								<div class="col-md-6">
-									<div class="info">
-										<strong>Compatibility check:</strong>
-										Date "<span id="date-output"></span>",
-										Time "<span id="time-output"></span>"
+									
+									<div class="col-md-6">
+										<div class="info">
+											<strong>Compatibility check:</strong>
+											Date "<span id="date-output"></span>",
+											Time "<span id="time-output"></span>"
+										</div>
+										<div class="datetimepicker">
+											<input type="date" id="date" value="0000-00-00">
+											<span></span>
+											<input type="time" id="time" value="00:00">
+										</div>
 									</div>
-									<div class="datetimepicker">
-										<input type="date" id="date" value="2018-07-03">
-										<span></span>
-										<input type="time" id="time" value="08:00">
-									</div>
-								</div>
 								</div>
 				
-								<div class="row mb-2">
-								<div class="col-md-6">
-									<label for="birthdayDate" class="form-label">Version</label>			  
-									<div class="form-outline datepicker">
-										<input
-										type="text"
-										class="form-control"
-										id="birthdayDate"
-										/>
+								<div class="row mb-4">
+									<div class="col-md-6">
+										<h6 class="mb-2 pb-1">Update Type: </h6>
+
+										<div class="form-check form-check-inline">
+										  <input
+											class="form-check-input"
+											type="radio"
+											name="inlineRadioOptions"
+											id="minor"
+											value="minor"
+											checked="checked"
+										  />
+										  <label class="form-check-label" for="femaleGender">Minor</label>
+										</div>
+					
+										<div class="form-check form-check-inline">
+										  <input
+											class="form-check-input"
+											type="radio"
+											name="inlineRadioOptions"
+											id="major"
+											value="major"
+										  />
+										  <label class="form-check-label" for="maleGender">Major</label>
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<label for="birthdayDate" class="form-label">Version Number</label>			  
+										<div class="form-outline datepicker">
+											<input
+											type="text"
+											class="form-control"
+											id="birthdayDate"
+											/>
+										</div>
 									</div>
 								</div>
-								</div>
 
-
-								<div class="row">
-									<div class="col-md-6 mb-4">
+								<div class="row mb-2">
+									<div class="col-md-6">
 										<h6 class="mb-2 pb-1">Grade: </h6>
 				
 										<select class="form-select">
@@ -164,7 +190,7 @@
 										</select>
 									</div>
 
-									<div class="col-md-6 mb-4">
+									<div class="col-md-6">
 										<h6 class="mb-2 pb-1">Subject: </h6>
 				
 										<select class="form-select">
