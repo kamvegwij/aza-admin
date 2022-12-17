@@ -21,8 +21,6 @@
 	<!-- MDB -->
 	<link rel="stylesheet" href="css/mdb.min.css"/>
 
-    <!-- Custom styles for this template -->
-    <link href="dashboard.css" rel="stylesheet">
 	<!-- Custom -->
 	<link rel="stylesheet" href="css/style.css"/>
 
@@ -57,7 +55,7 @@
 
 		<div class="navbar-nav">
 			<div class="nav-item text-nowrap">
-			<a class="nav-link px-2 mx-3 bg-secondary" href="#">Sign out</a>
+			<a class="nav-link px-2 mx-3 bg-grayish" href="#">Sign out</a>
 			</div>
 		</div>
 	</header>
@@ -90,7 +88,7 @@
 			</div>
 		</nav>
 
-		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+		<main class="ms-sm-auto col-lg-10 px-md-4">
 			<!--
 			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 				<h1 class="h2">Dashboard</h1>
@@ -107,9 +105,141 @@
 			</div>
 			-->
 
-			<!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
+			<h1 class="my-3 text-center display-3">Upload Update</h1>
 
-			<h1 class="my-3">Upload Update</h1>
+			<section class="intro">
+				<div class="mask d-flex align-items-center h-100 ms-5">
+				  <div class="container-fluid">
+					<div class="row justify-content-center">
+					  <div class="col-12 col-lg-9 col-xl-7">
+						<div class="card">
+						  <div class="card-body p-4 p-md-5">
+							<h3 class="mb-4 pb-2 text-center">Game Update Details</h3>
+			  
+							<form action="">
+			  
+							  <div class="row">
+								<div class="col-md-6 mb-4">
+			  
+								  <div class="form-outline">
+									<input type="text" id="firstName" class="form-control" />
+									<label class="form-label" for="firstName">First Name</label>
+								  </div>
+			  
+								</div>
+								<div class="col-md-6 mb-4">
+			  
+								  <div class="form-outline">
+									<input type="text" id="lastName" class="form-control" />
+									<label class="form-label" for="lastName">Last Name</label>
+								  </div>
+			  
+								</div>
+							  </div>
+			  
+							  <div class="row">
+								<div class="col-md-6 mb-4">
+			  
+								  <div class="form-outline datepicker">
+									<input
+									  type="text"
+									  class="form-control"
+									  id="birthdayDate"
+									/>
+									<label for="birthdayDate" class="form-label">Birthday</label>
+								  </div>
+			  
+								</div>
+								<div class="col-md-6 mb-4">
+			  
+								  <h6 class="mb-2 pb-1">Gender: </h6>
+			  
+								  <div class="form-check form-check-inline">
+									<input
+									  class="form-check-input"
+									  type="radio"
+									  name="inlineRadioOptions"
+									  id="femaleGender"
+									  value="option1"
+									/>
+									<label class="form-check-label" for="femaleGender">Female</label>
+								  </div>
+			  
+								  <div class="form-check form-check-inline">
+									<input
+									  class="form-check-input"
+									  type="radio"
+									  name="inlineRadioOptions"
+									  id="maleGender"
+									  value="option2"
+									/>
+									<label class="form-check-label" for="maleGender">Male</label>
+								  </div>
+			  
+								  <div class="form-check form-check-inline">
+									<input
+									  class="form-check-input"
+									  type="radio"
+									  name="inlineRadioOptions"
+									  id="otherGender"
+									  value="option3"
+									/>
+									<label class="form-check-label" for="otherGender">Other</label>
+								  </div>
+			  
+								</div>
+							  </div>
+			  
+							  <div class="row">
+								<div class="col-md-6 mb-4">
+			  
+								  <div class="form-outline">
+									<input type="email" id="emailAddress" class="form-control" />
+									<label class="form-label" for="emailAddress">Email</label>
+								  </div>
+			  
+								</div>
+								<div class="col-md-6 mb-4">
+			  
+								  <div class="form-outline">
+									<input type="tel" id="phoneNumber" class="form-control" />
+									<label class="form-label" for="phoneNumber">Phone Number</label>
+								  </div>
+			  
+								</div>
+							  </div>
+			  
+							  <div class="row">
+								<div class="col-12">
+			  
+								  <h6 class="mb-3">Subject</h6>
+			  
+								  <select class="form-select">
+									<option value="1">One</option>
+									<option value="2">Two</option>
+									<option value="3">Three</option>
+									<option value="4">Four</option>
+									<option value="5">Five</option>
+									<option value="6">Six</option>
+									<option value="7">Seven</option>
+									<option value="8">Eight</option>
+								  </select>
+			  
+								  <div class="mt-4 text-center">
+									<input class="btn btn-warning btn-lg" type="submit" value="Submit" />
+								  </div>
+			  
+								</div>
+							  </div>
+			  
+							</form>
+						  </div>
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  </section>
 
 			<!--
 			<h2>Section title</h2>
