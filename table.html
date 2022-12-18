@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Dashboard</title>
+    <title>Updates Summary</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
 
@@ -66,7 +66,7 @@
 			<div class="position-sticky pt-3">
 				<ul class="nav flex-column">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="index.html">
+						<a class="nav-link" aria-current="page" href="index.html">
 						<span data-feather="home"></span>
 						Dashboard
 						</a>
@@ -79,7 +79,7 @@
 				
 				<ul class="nav flex-column mb-2">
 					<li class="nav-item">
-						<a class="nav-link" href="table.html">
+						<a class="nav-link active" href="table.html">
 						<span data-feather="file-text"></span>
 						Previous updates
 						</a>
@@ -104,130 +104,12 @@
 				</div>
 			</div>
 			-->
+			
+			<h2 class="mt-5">Current Update</h2>
 
-			<h1 class="my-3 text-center display-3">Upload Update</h1>
 
-			<section class="intro">
-				<div class="mask d-flex align-items-center h-100 ms-5">
-				  <div class="container-fluid vh-100">
-					<div class="row justify-content-center">
-					  <div class="col-12 col-lg-9 col-xl-7">
-						<div class="card px-5 py-3">
-						  <div class="card-body p-4 p-md-5">
-							<h3 class="mb-4 pb-2 text-center">Game Update Details</h3>
-			  
-							<form action="">
-								<div class="row mb-4">
-									<div class="col-md-6">
-										<div class="form-outline">
-										<label class="form-label" for="firstName">Developer Name</label>
-										<input type="text" id="firstName" class="form-control" />
-										</div>
-									</div>
-									
-									<div class="col-md-6">
-										<div class="info">
-											<strong>Compatibility check:</strong>
-											Date "<span id="date-output"></span>",
-											Time "<span id="time-output"></span>"
-										</div>
-										<div class="datetimepicker">
-											<input type="date" id="date" value="0000-00-00">
-											<span></span>
-											<input type="time" id="time" value="00:00">
-										</div>
-									</div>
-								</div>
+			<h2 class="mt-5">Updates Table</h2>
 
-								<div class="row mb-4">
-									<div class="col-md-6">
-										<h6 class="mb-2 pb-1">Grade: </h6>
-				
-										<select class="form-select">
-										<option value="1">5</option>
-										<option value="2">6</option>
-										<option value="3">7</option>
-										</select>
-									</div>
-
-									<div class="col-md-6">
-										<h6 class="mb-2 pb-1">Subject: </h6>
-				
-										<select class="form-select">
-										<option value="1">Geography</option>
-										<option value="2">Natural Science</option>
-										<option value="3">Mathematics</option>
-										</select>
-									</div>	  
-								</div>
-
-								<div class="row mb-2">
-									<div class="col-md-6">
-										<h6 class="mb-2 pb-1">Update Type: </h6>
-
-										<div class="form-check form-check-inline">
-										  <input
-											class="form-check-input"
-											type="radio"
-											name="inlineRadioOptions"
-											id="minor"
-											value="minor"
-											checked="checked"
-										  />
-										  <label class="form-check-label" for="femaleGender">Minor</label>
-										</div>
-					
-										<div class="form-check form-check-inline">
-										  <input
-											class="form-check-input"
-											type="radio"
-											name="inlineRadioOptions"
-											id="major"
-											value="major"
-										  />
-										  <label class="form-check-label" for="maleGender">Major</label>
-										</div>
-									</div>
-
-									<div class="col-md-6">
-										<label for="birthdayDate" class="form-label">Version Number</label>			  
-										<div class="form-outline datepicker">
-											<input
-											type="text"
-											class="form-control"
-											id="birthdayDate"
-											/>
-										</div>
-									</div>
-								</div>
-
-								<div class="form-group mb-4">
-									<label for="comment">Comments</label>
-									<textarea class="form-control" id="comment" rows="3"></textarea>
-								</div>
-								
-								<div class="row">
-									<div class="col-12">
-										<label class="form-label" for="customFile">choose ".pck" file to upload</label>
-										<input type="file" class="form-control" id="customFile" />
-
-										<div class="mt-4 text-center">
-											<input class="btn btn-success btn-lg" type="submit" value="Upload" />
-										</div>
-									</div>
-								</div>
-			  
-							</form>
-						  </div>
-						</div>
-					  </div>
-					</div>
-				  </div>
-				</div>
-			  </section>
-
-			<!--
-			<h2>Section title</h2>
 			<div class="table-responsive">
 				<table class="table table-striped table-sm">
 					<thead>
@@ -264,7 +146,7 @@
 					</tbody>
 				</table>
 			</div>
-			-->
+			
 		</main>
 	</div>
 	</div>
