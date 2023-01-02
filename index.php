@@ -28,6 +28,8 @@
 	<!-- Custom -->
 	<link rel="stylesheet" href="css/style.css"/>
 
+	<!-- JQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   </head>
 
   <style>
@@ -123,6 +125,7 @@
 			  
 			
 							<?php
+
 								// database functions
 								$db = new Database();
 								$conn = $db->conn;
@@ -188,36 +191,38 @@
 										  <input
 											class="form-check-input"
 											type="radio"
-											name="inlineRadioOptions"
+											name="radioBtn"
 											id="minor"
-											value="minor"
+											value="0.1"
 											checked="checked"
+											onchange="updateVersion(this);"
 										  />
-										  <label class="form-check-label" for="femaleGender">Minor</label>
+										  <label class="form-check-label" >Minor</label>
 										</div>
 					
 										<div class="form-check form-check-inline">
 										  <input
 											class="form-check-input"
 											type="radio"
-											name="inlineRadioOptions"
+											name="radioBtn"
 											id="major"
-											value="major"
+											value="1.0"
+											onchange="updateVersion(this);"
 										  />
-										  <label class="form-check-label" for="maleGender">Major</label>
+										  <label class="form-check-label">Major</label>
 										</div>
 									</div>
 
 									<div class="col-md-6">
-										<label for="birthdayDate" class="form-label">Version Number</label>			  
-										<div class="form-outline datepicker">
+										<label for="versionNumber" class="form-label">Version Number</label>			  
+										<div class="form-outline">
 											<input
 											readonly
 											type="text"
 											class="form-control"
-											id="birthdayDate"
-											value="0.0"
+											id="versionNumber"
 											name="versionNumber"
+											value="0.0"
 											/>
 										</div>
 									</div>
