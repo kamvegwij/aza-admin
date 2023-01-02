@@ -125,6 +125,9 @@
 			  
 			
 							<?php
+								// TODO
+								// set autofill values from sign in
+								// set algo for getting version number
 
 								// database functions
 								$db = new Database();
@@ -133,6 +136,9 @@
 								// autofill fields
 								$dt = new DateTime();
 								$dt->setTimezone(new DateTimeZone('Africa/Johannesburg'));
+
+								$date = date('Y-m-d');
+								$time = $dt->format('h:i');
 								$comment = "";
 
 								if (isset($_POST['submit'])) {
@@ -156,9 +162,9 @@
 											Time "<span id="time-output"></span>"
 										</div>
 										<div class="datetimepicker">
-											<input readonly type="date" id="date" name="date" value=<?php echo date("Y-m-d"); ?> >
+											<input readonly type="date" id="date" name="date" value=<?php echo $date; ?> >
 											<span></span>
-											<input readonly type="time" id="time" name="time" value=<?php echo $dt->format('h:i'); ?> >
+											<input readonly type="time" id="time" name="time" value=<?php echo $time; ?> >
 										</div>
 									</div>
 								</div>
