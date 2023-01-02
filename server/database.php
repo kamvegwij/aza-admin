@@ -1,6 +1,6 @@
 <?php require_once("config.php");
 
-class Util {
+class Database {
     public $conn; // perform database queries
 
     function __construct() {

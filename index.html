@@ -121,7 +121,7 @@
 									<div class="col-md-6">
 										<div class="form-outline">
 										<label class="form-label" for="firstName">Developer Name</label>
-										<input type="text" id="firstName" class="form-control" />
+										<input type="text" id="firstName" class="form-control" value="Tester01"  disabled/>
 										</div>
 									</div>
 									
@@ -132,9 +132,9 @@
 											Time "<span id="time-output"></span>"
 										</div>
 										<div class="datetimepicker">
-											<input type="date" id="date" value="0000-00-00">
+											<input type="date" id="date" value="0000-00-00" disabled>
 											<span></span>
-											<input type="time" id="time" value="00:00">
+											<input type="time" id="time" value="00:00" disabled>
 										</div>
 									</div>
 								</div>
@@ -196,13 +196,15 @@
 											type="text"
 											class="form-control"
 											id="birthdayDate"
+											value="0.0"
+											disabled
 											/>
 										</div>
 									</div>
 								</div>
 
 								<div class="form-group mb-4">
-									<label for="comment">Comments</label>
+									<label for="comment">Comment</label>
 									<textarea class="form-control" id="comment" rows="3"></textarea>
 								</div>
 								
