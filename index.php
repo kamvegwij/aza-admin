@@ -131,6 +131,8 @@
 								$conn = $db->conn;
 				
 								// autofill fields
+								$dt = new DateTime();
+								$dt->setTimezone(new DateTimeZone('Africa/Johannesburg'));
 								$comment = "";
 
 								if (isset($_POST['submit'])) {
@@ -154,9 +156,9 @@
 											Time "<span id="time-output"></span>"
 										</div>
 										<div class="datetimepicker">
-											<input readonly type="date" id="date" value="0000-00-00">
+											<input readonly type="date" id="date" name="date" value=<?php echo date("Y-m-d"); ?> >
 											<span></span>
-											<input readonly type="time" id="time" value="00:00">
+											<input readonly type="time" id="time" name="time" value=<?php echo $dt->format('h:i'); ?> >
 										</div>
 									</div>
 								</div>
@@ -248,14 +250,14 @@
 								if (isset($_POST['submit'])) {
 
 									$name = $_POST['name'];
-									// $date = 
-
+									$date = $_POST['date'];
+									$time = $_POST['time'];
 									$grade = intval($_POST['grade']);
 									$subject = $_POST['subject'];
 									// $type = 
 									$versionNumber = $_POST['versionNumber'];									
 
-									echo $name. $grade . $subject .$versionNumber. $comment;
+									echo $name . $date. $grade . $subject .$versionNumber. $comment;
 								}
 								?>
 			  
