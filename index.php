@@ -16,7 +16,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
 
 
-	<!-- MDB icon -->
+	<!-- page icon -->
 	<link rel="icon" href="img/logo_1.png" type="image/x-icon" />
 
 	<!-- Font Awesome -->
@@ -95,7 +95,7 @@
 			</div>
 		</nav>
 
-		<main class="ms-sm-auto col-lg-10 px-md-4">
+		<main class="ms-sm-auto col-lg-10">
 			<!--
 			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 				<h1 class="h2">Dashboard</h1>
@@ -112,10 +112,10 @@
 			</div>
 			-->
 
-			<h1 class="my-3 text-center display-3">Upload Update</h1>
+			<h1 class="mt-5 text-center display-3">Upload Update</h1>
 
 			<section class="intro">
-				<div class="mask d-flex align-items-center h-100 ms-5">
+				<div class="mask d-flex align-items-center h-100">
 				  <div class="container-fluid vh-100">
 					<div class="row justify-content-center">
 					  <div class="col-12 col-lg-9 col-xl-7">
