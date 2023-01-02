@@ -1,3 +1,8 @@
+<?php 
+	require('server/database.php'); 
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -44,7 +49,7 @@
   <body>
     
 	<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-		<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
+		<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="index.php">
 			<i class="fa-solid fa-house mx-2"></i>
 			AZA Explorers
 		</a>
@@ -66,7 +71,7 @@
 			<div class="position-sticky pt-3">
 				<ul class="nav flex-column">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="index.html">
+						<a class="nav-link active" aria-current="page" href="index.php">
 						<span data-feather="home"></span>
 						Dashboard
 						</a>
@@ -116,12 +121,26 @@
 						  <div class="card-body p-4 p-md-5">
 							<h3 class="mb-4 pb-2 text-center">Game Update Details</h3>
 			  
-							<form action="">
+			
+							<?php
+								// database functions
+								$db = new Database();
+								$conn = $db->conn;
+				
+								// autofill fields
+								$comment = "";
+
+								if (isset($_POST['submit'])) {
+									$comment = $db->strip($_POST['comment']);
+								}
+							?>
+
+							<form  class="" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
 								<div class="row mb-4">
 									<div class="col-md-6">
 										<div class="form-outline">
 										<label class="form-label" for="firstName">Developer Name</label>
-										<input type="text" id="firstName" class="form-control" value="Tester01"  disabled/>
+										<input readonly type="text" id="name" class="form-control" name="name" value="Tester01"/>
 										</div>
 									</div>
 									
@@ -132,9 +151,9 @@
 											Time "<span id="time-output"></span>"
 										</div>
 										<div class="datetimepicker">
-											<input type="date" id="date" value="0000-00-00" disabled>
+											<input readonly type="date" id="date" value="0000-00-00">
 											<span></span>
-											<input type="time" id="time" value="00:00" disabled>
+											<input readonly type="time" id="time" value="00:00">
 										</div>
 									</div>
 								</div>
@@ -143,20 +162,20 @@
 									<div class="col-md-6">
 										<h6 class="mb-2 pb-1">Grade: </h6>
 				
-										<select class="form-select">
-										<option value="1">5</option>
-										<option value="2">6</option>
-										<option value="3">7</option>
+										<select class="form-select" name="grade">
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
 										</select>
 									</div>
 
 									<div class="col-md-6">
 										<h6 class="mb-2 pb-1">Subject: </h6>
 				
-										<select class="form-select">
-										<option value="1">Geography</option>
-										<option value="2">Natural Science</option>
-										<option value="3">Mathematics</option>
+										<select class="form-select" name="subject">
+										<option value="geography">Geography</option>
+										<option value="natural sciences">Natural Sciences</option>
+										<option value="mathematics">Mathematics</option>
 										</select>
 									</div>	  
 								</div>
@@ -193,11 +212,12 @@
 										<label for="birthdayDate" class="form-label">Version Number</label>			  
 										<div class="form-outline datepicker">
 											<input
+											readonly
 											type="text"
 											class="form-control"
 											id="birthdayDate"
 											value="0.0"
-											disabled
+											name="versionNumber"
 											/>
 										</div>
 									</div>
@@ -205,7 +225,7 @@
 
 								<div class="form-group mb-4">
 									<label for="comment">Comment</label>
-									<textarea class="form-control" id="comment" rows="3"></textarea>
+									<textarea class="form-control" id="comment" name="comment"rows="3"><?php echo $comment; ?></textarea>
 								</div>
 								
 								<div class="row">
@@ -214,10 +234,25 @@
 										<input type="file" class="form-control" id="customFile" />
 
 										<div class="mt-4 text-center">
-											<input class="btn btn-success btn-lg" type="submit" value="Upload" />
+											<input class="btn btn-success btn-lg" type="submit" name="submit" value="Upload" />
 										</div>
 									</div>
 								</div>
+
+								<?php
+								if (isset($_POST['submit'])) {
+
+									$name = $_POST['name'];
+									// $date = 
+
+									$grade = intval($_POST['grade']);
+									$subject = $_POST['subject'];
+									// $type = 
+									$versionNumber = $_POST['versionNumber'];									
+
+									echo $name. $grade . $subject .$versionNumber. $comment;
+								}
+								?>
 			  
 							</form>
 						  </div>

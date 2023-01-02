@@ -15,16 +15,8 @@ class Database {
         mysqli_close($this->conn);
     }
 
-    // get rid of spaces, new lines, unwanted characters etc.
+    // get rid of spaces, new lines etc.
     public function strip($data) {
-        $data = preg_replace("@\n@", "", $data);
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-
-        return $data;
-    }
-    public function strip_username($data) {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
