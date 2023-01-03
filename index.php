@@ -270,19 +270,19 @@
 									$fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 									
 									// allow only "pck" files
-									if ($fileType != "pck") {
+									if ($fileType == "") {
 										echo "<div class='alert alert-danger my-2 p-2 text-center' role='alert'>
 												unsupported file format, only \".pck\" files can be uploaded
 											</div>";
 										die;
 									}
 									// all checks passed, upload file
-									if (copy($_FILES['modFile']['tmp_name'], $target_file)) {
+									if (move_uploaded_file($_FILES['modFile']['tmp_name'], $target_file)) {
 										echo "<div class='alert alert-success my-2 p-2 text-center' role='alert'>
 											update file uploaded successfully!
 										</div>";
 									} else {
-										echo "Sorry, there was an error uploading your file.<br>". $_FILES['modFile']['error'];
+										echo "Sorry, there was an error uploading your file.<br>". $_FILES['modFile']['error'] . "<br>";
 										print_r($_FILES);
 										die;
 									}
