@@ -255,6 +255,7 @@
 								<?php
 								if (isset($_POST['submit'])) {
 
+									$updateID = uniqid("LNR-");
 									$name = $_POST['name'];
 									$date = $_POST['date'];
 									$time = $_POST['time'];
@@ -262,15 +263,21 @@
 									$subject = $_POST['subject'];
 									// $type = 
 									$versionNumber = $_POST['versionNumber'];
+									/* 
+									 * variables already set
+									 *
+									 * $comment
+									 * $date
+									 * $time
+									*/
 
 									// upload mod ".pck" file
-									$target_dir = "mods/";
-									$target_file = $target_dir . basename(time() . $_FILES["modFile"]["name"]);
+									$target_file = "mods/" . basename(time() . $_FILES["modFile"]["name"]);
 									// extract file extension
 									$fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 									
 									// allow only "pck" files
-									if ($fileType == "") {
+									if ($fileType != "pck") {
 										echo "<div class='alert alert-danger my-2 p-2 text-center' role='alert'>
 												unsupported file format, only \".pck\" files can be uploaded
 											</div>";
@@ -279,15 +286,39 @@
 									// all checks passed, upload file
 									if (move_uploaded_file($_FILES['modFile']['tmp_name'], $target_file)) {
 										echo "<div class='alert alert-success my-2 p-2 text-center' role='alert'>
-											update file uploaded successfully!
-										</div>";
+												update file uploaded successfully!
+											</div>";
 									} else {
-										echo "Sorry, there was an error uploading your file.<br>". $_FILES['modFile']['error'] . "<br>";
-										print_r($_FILES);
+										echo "<div class='alert alert-success my-2 p-2 text-center' role='alert'>
+												update file uploaded successfully!
+											</div>";
+										// print_r($_FILES);
 										die;
 									}
 
-									echo $target_file. $name . $date. $grade . $subject .$versionNumber. $comment;
+									// upload to database
+
+
+									// create update log file
+									$logFile = fopen($target_file . ".json", "w")
+										or 
+									die("<div class='alert alert-success my-2 p-2 text-center' role='alert'>
+											Unable to create or open update log file.
+										</div>");
+
+									$logDict = [
+										"updateID" => 0,
+										"versionNumber" => 0,
+										"type" => 0,
+										"date" => 0,
+										"grade" => 0,
+										"subject" => 0,
+									];
+
+									fwrite($logFile, json_encode($logDict));
+									fclose($logFile);
+
+									// echo $target_dir. $name . $date. $grade . $subject .$versionNumber. $comment;
 								}
 								?>
 			  
