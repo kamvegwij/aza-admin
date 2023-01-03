@@ -138,7 +138,7 @@
 								$dt->setTimezone(new DateTimeZone('Africa/Johannesburg'));
 
 								$date = date('Y-m-d');
-								$time = $dt->format('h:i');
+								$time = $dt->format('H:i');
 								$comment = "";
 
 								if (isset($_POST['submit'])) {
@@ -146,7 +146,7 @@
 								}
 							?>
 
-							<form  class="" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+							<form  class="" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" enctype="multipart/form-data">
 								<div class="row mb-4">
 									<div class="col-md-6">
 										<div class="form-outline">
@@ -162,9 +162,9 @@
 											Time "<span id="time-output"></span>"
 										</div>
 										<div class="datetimepicker">
-											<input readonly type="date" id="date" name="date" value=<?php echo $date; ?> >
+											<input readonly type="date" id="date" name="date" value=<?php echo $date; ?> />
 											<span></span>
-											<input readonly type="time" id="time" name="time" value=<?php echo $time; ?> >
+											<input readonly type="time" id="time" name="time" value=<?php echo $time; ?> />
 										</div>
 									</div>
 								</div>
@@ -244,7 +244,7 @@
 								<div class="row">
 									<div class="col-12">
 										<label class="form-label" for="customFile">choose ".pck" file to upload</label>
-										<input type="file" class="form-control" id="customFile" />
+										<input type="file" name="modFile" class="form-control" id="modFile" />
 
 										<div class="mt-4 text-center">
 											<input class="btn btn-success btn-lg" type="submit" name="submit" value="Upload" />
@@ -261,9 +261,33 @@
 									$grade = intval($_POST['grade']);
 									$subject = $_POST['subject'];
 									// $type = 
-									$versionNumber = $_POST['versionNumber'];									
+									$versionNumber = $_POST['versionNumber'];
 
-									echo $name . $date. $grade . $subject .$versionNumber. $comment;
+									// upload mod ".pck" file
+									$target_dir = "mods/";
+									$target_file = $target_dir . basename(time() . $_FILES["modFile"]["name"]);
+									// extract file extension
+									$fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+									
+									// allow only "pck" files
+									if ($fileType != "pck") {
+										echo "<div class='alert alert-danger my-2 p-2 text-center' role='alert'>
+												unsupported file format, only \".pck\" files can be uploaded
+											</div>";
+										die;
+									}
+									// all checks passed, upload file
+									if (copy($_FILES['modFile']['tmp_name'], $target_file)) {
+										echo "<div class='alert alert-success my-2 p-2 text-center' role='alert'>
+											update file uploaded successfully!
+										</div>";
+									} else {
+										echo "Sorry, there was an error uploading your file.<br>". $_FILES['modFile']['error'];
+										print_r($_FILES);
+										die;
+									}
+
+									echo $target_file. $name . $date. $grade . $subject .$versionNumber. $comment;
 								}
 								?>
 			  
