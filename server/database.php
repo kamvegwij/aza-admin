@@ -6,7 +6,7 @@ class Database {
     function __construct() {
         // initialize database connection
         $this->conn = mysqli_connect(SERVER_NAME, USER_NAME, PASSWORD, DATABASE)
-        // display databse connection error
+        // display database connection error
         or die("Database: Connection Failed!");
     }
 

@@ -1,7 +1,9 @@
-<?php 
-	require('server/database.php'); 
+<?php
+	ini_set('display_errors', 1); // enable debugging and error display
+	require("server/database.php");
+	$db = new Database();
+	$conn = $db->conn;
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -128,10 +130,6 @@
 								// TODO
 								// set autofill values from sign in
 								// set algo for getting version number
-
-								// database functions
-								$db = new Database();
-								$conn = $db->conn;
 				
 								// autofill fields
 								$dt = new DateTime();
@@ -199,7 +197,7 @@
 										  <input
 											class="form-check-input"
 											type="radio"
-											name="radioBtn"
+											name="verRadioBtn"
 											id="minor"
 											value="0.1"
 											checked="checked"
@@ -212,7 +210,7 @@
 										  <input
 											class="form-check-input"
 											type="radio"
-											name="radioBtn"
+											name="verRadioBtn"
 											id="major"
 											value="1.0"
 											onchange="updateVersion(this);"
@@ -255,24 +253,29 @@
 								<?php
 								if (isset($_POST['submit'])) {
 
-									$updateID = uniqid("LNR-");
+									$updateID = uniqid();
 									$name = $_POST['name'];
-									$date = $_POST['date'];
-									$time = $_POST['time'];
 									$grade = intval($_POST['grade']);
 									$subject = $_POST['subject'];
-									// $type = 
 									$versionNumber = $_POST['versionNumber'];
+
+									/* determine type based on versionNumber
+									 * 0.X => minor  ( < 1 )
+									 * X.0 => major  ( >= 1 )
+									*/
+									$typeVerNum = intval($_POST['verRadioBtn']);
+									$type = $typeVerNum < 1 ? "minor" : "major";
 									/* 
 									 * variables already set
 									 *
 									 * $comment
-									 * $date
-									 * $time
+									 * $date (for display only)
+									 * $time (for display only)
 									*/
 
 									// upload mod ".pck" file
-									$target_file = "mods/" . basename(time() . $_FILES["modFile"]["name"]);
+									$filename = basename(time() . $_FILES["modFile"]["name"]);
+									$target_file = "mods/" . $filename;
 									// extract file extension
 									$fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 									
@@ -283,14 +286,15 @@
 											</div>";
 										die;
 									}
+
 									// all checks passed, upload file
 									if (move_uploaded_file($_FILES['modFile']['tmp_name'], $target_file)) {
 										echo "<div class='alert alert-success my-2 p-2 text-center' role='alert'>
 												update file uploaded successfully!
 											</div>";
 									} else {
-										echo "<div class='alert alert-success my-2 p-2 text-center' role='alert'>
-												update file uploaded successfully!
+										echo "<div class='alert alert-danger my-2 p-2 text-center' role='alert'>
+												failed to upload update file, please try again later.
 											</div>";
 										// print_r($_FILES);
 										die;
@@ -298,6 +302,21 @@
 
 									// upload to database
 
+									$curr_datetime = date('Y-m-d H:i:s');
+									$query = "INSERT INTO updates (updateID, By, date, grade, subject, type, versionNumber, comment, filename)
+												VALUES ('$updateID', '$name', '$curr_datetime', '$grade', '$subject', '$type', '$versionNumber', '$comment', '$filename');";
+									$result = mysqli_query($conn, $query);
+
+									if ($result == false) {
+										echo "<div class='alert alert-danger my-2 p-2 text-center' role='alert'>
+											upload failed, please make sure all fields are valid
+										</div>".$conn->error;
+										die;
+									} else {
+										echo "<div class='alert alert-success my-2 p-2 text-center' role='alert'>
+											update successfully uploaded, reload the game for changes to reflect.
+										</div>";
+									}
 
 									// create update log file
 									$logFile = fopen($target_file . ".json", "w")
@@ -307,18 +326,21 @@
 										</div>");
 
 									$logDict = [
-										"updateID" => 0,
-										"versionNumber" => 0,
-										"type" => 0,
-										"date" => 0,
-										"grade" => 0,
-										"subject" => 0,
+										"updateID" => $updateID,
+										"versionNumber" => $versionNumber,
+										"type" => $type,
+										"date" => $date,
+										"grade" => $grade,
+										"subject" => $subject,
+										"By" => $name
 									];
-
 									fwrite($logFile, json_encode($logDict));
 									fclose($logFile);
+									echo "<div class='alert alert-success my-2 p-2 text-center' role='alert'>
+											update log file created successfully!
+										</div>";
 
-									// echo $target_dir. $name . $date. $grade . $subject .$versionNumber. $comment;
+									# echo $date. $time."<br>". $grade . $subject .$versionNumber. $comment;
 								}
 								?>
 			  
