@@ -290,7 +290,7 @@
 									// all checks passed, upload file
 									if (move_uploaded_file($_FILES['modFile']['tmp_name'], $target_file)) {
 										echo "<div class='alert alert-success my-2 p-2 text-center' role='alert'>
-												update file uploaded successfully!
+												\"pck\" file uploaded successfully!
 											</div>";
 									} else {
 										echo "<div class='alert alert-danger my-2 p-2 text-center' role='alert'>
@@ -301,11 +301,15 @@
 									}
 
 									// upload to database
-
-									$curr_datetime = date('Y-m-d H:i:s');
-									$query = "INSERT INTO updates (updateID, By, date, grade, subject, type, versionNumber, comment, filename)
-												VALUES ('$updateID', '$name', '$curr_datetime', '$grade', '$subject', '$type', '$versionNumber', '$comment', '$filename');";
-									$result = mysqli_query($conn, $query);
+									$curr_datetime = $date . " " . $dt->format('H:i:s');
+									$query = "INSERT INTO updates (developer, date, grade, subject, type, versionNumber, comment, filename)
+												VALUES ('$name', '$curr_datetime', '$grade', '$subject', '$type', '$versionNumber', '$comment', '$filename');";
+									try {
+										$result = mysqli_query($conn, $query);
+									} catch (mysqli_sql_exception $err) { 
+										echo $err;
+										exit; 
+									}
 
 									if ($result == false) {
 										echo "<div class='alert alert-danger my-2 p-2 text-center' role='alert'>
@@ -326,18 +330,17 @@
 										</div>");
 
 									$logDict = [
-										"updateID" => $updateID,
 										"versionNumber" => $versionNumber,
 										"type" => $type,
 										"date" => $date,
 										"grade" => $grade,
 										"subject" => $subject,
-										"By" => $name
+										"developer" => $name
 									];
 									fwrite($logFile, json_encode($logDict));
 									fclose($logFile);
 									echo "<div class='alert alert-success my-2 p-2 text-center' role='alert'>
-											update log file created successfully!
+											log file generated!
 										</div>";
 
 									# echo $date. $time."<br>". $grade . $subject .$versionNumber. $comment;
