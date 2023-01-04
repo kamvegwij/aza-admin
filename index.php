@@ -281,7 +281,7 @@
 									
 									// allow only "pck" files
 									if ($fileType != "pck") {
-										echo "<div class='alert alert-danger my-2 p-2 text-center' role='alert'>
+										echo "<div class='alert alert-danger alert-dismissible fade show my-2 p-2 text-center' role='alert'>
 												unsupported file format, only \".pck\" files can be uploaded
 											</div>";
 										die;
@@ -289,11 +289,11 @@
 
 									// all checks passed, upload file
 									if (move_uploaded_file($_FILES['modFile']['tmp_name'], $target_file)) {
-										echo "<div class='alert alert-success my-2 p-2 text-center' role='alert'>
+										echo "<div class='alert alert-success alert-dismissible fade show my-2 p-2 text-center' role='alert'>
 												\"pck\" file uploaded successfully!
 											</div>";
 									} else {
-										echo "<div class='alert alert-danger my-2 p-2 text-center' role='alert'>
+										echo "<div class='alert alert-danger alert-dismissible fade show my-2 p-2 text-center' role='alert'>
 												failed to upload update file, please try again later.
 											</div>";
 										// print_r($_FILES);
@@ -312,12 +312,12 @@
 									}
 
 									if ($result == false) {
-										echo "<div class='alert alert-danger my-2 p-2 text-center' role='alert'>
+										echo "<div class='alert alert-danger alert-dismissible fade show my-2 p-2 text-center' role='alert'>
 											upload failed, please make sure all fields are valid
 										</div>".$conn->error;
 										die;
 									} else {
-										echo "<div class='alert alert-success my-2 p-2 text-center' role='alert'>
+										echo "<div class='alert alert-success alert-dismissible fade show my-2 p-2 text-center' role='alert'>
 											update successfully uploaded, reload the game for changes to reflect.
 										</div>";
 									}
@@ -325,7 +325,7 @@
 									// create update log file
 									$logFile = fopen($target_file . ".json", "w")
 										or 
-									die("<div class='alert alert-success my-2 p-2 text-center' role='alert'>
+									die("<div class='alert alert-success alert-dismissible fade show my-2 p-2 text-center' role='alert'>
 											Unable to create or open update log file.
 										</div>");
 
@@ -339,11 +339,9 @@
 									];
 									fwrite($logFile, json_encode($logDict));
 									fclose($logFile);
-									echo "<div class='alert alert-success my-2 p-2 text-center' role='alert'>
+									echo "<div class='alert alert-success alert-dismissible fade show my-2 p-2 text-center' role='alert'>
 											log file generated!
 										</div>";
-
-									# echo $date. $time."<br>". $grade . $subject .$versionNumber. $comment;
 								}
 								?>
 			  
