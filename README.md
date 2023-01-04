@@ -2,5 +2,5 @@
 
 <p align="center"> 
   <a>
-    <img src="docs/img/preview.png" width="800" alt="preview.png">
+    <img src="docs/preview.png" width="800" alt="preview.png">
   </a>
