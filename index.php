@@ -1,5 +1,8 @@
 <?php
+	// TODO
+	// Disable debugging mode
 	ini_set('display_errors', 1); // enable debugging and error display
+	
 	require("server/database.php");
 	$db = new Database();
 	$conn = $db->conn;
@@ -275,7 +278,33 @@
 
 									// upload mod ".pck" file
 									$filename = basename(time() . $_FILES["modFile"]["name"]);
-									$target_file = "mods/" . $filename;
+
+									$target_dir = "mods/";
+									switch ($grade) {
+										case 5:
+											$target_dir .= "grade5/";
+											break;
+										case 6:
+											$target_dir .= "grade6/";
+											break;
+										case 7:
+											$target_dir .= "grade7/";
+											break;
+										}
+									
+									switch ($subject) {
+										case "geography":
+											$target_dir .= "geography/";
+											break;
+										case "natural sciences":
+											$target_dir .= "natural sciences/";
+											break;
+										case "mathematics":
+											$target_dir .= "mathematics/";
+											break;
+										}
+
+									$target_file = $target_dir . $filename;
 									// extract file extension
 									$fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 									
@@ -286,6 +315,7 @@
 											</div>";
 										die;
 									}
+
 
 									// all checks passed, upload file
 									if (move_uploaded_file($_FILES['modFile']['tmp_name'], $target_file)) {
@@ -314,7 +344,7 @@
 									if ($result == false) {
 										echo "<div class='alert alert-danger alert-dismissible fade show my-2 p-2 text-center' role='alert'>
 											upload failed, please make sure all fields are valid
-										</div>".$conn->error;
+										</div>";
 										die;
 									} else {
 										echo "<div class='alert alert-success alert-dismissible fade show my-2 p-2 text-center' role='alert'>
