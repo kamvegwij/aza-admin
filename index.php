@@ -184,6 +184,12 @@
 										<option value="5">5</option>
 										<option value="6">6</option>
 										<option value="7">7</option>
+
+										<!--
+											FIELD FOR TESTING ONLY!
+											# comment/remove before deploying to production
+										-->
+										<option value="-1" selected>-1</option> 
 										</select>
 									</div>
 
@@ -194,6 +200,12 @@
 										<option value="geography">Geography</option>
 										<option value="natural sciences">Natural Sciences</option>
 										<option value="mathematics">Mathematics</option>
+
+										<!--
+											FIELD FOR TESTING ONLY!
+											# comment/remove before deploying to production
+										-->
+										<option value="test" selected>test</option>
 										</select>
 									</div>	  
 								</div>
@@ -254,31 +266,44 @@
 										<input type="file" name="modFile" class="form-control" id="modFile" />
 
 										<div class="mt-4 text-center">
-											<!-- Button trigger modal -->
-											<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#exampleModal">
+											<!--
+												FIELD FOR TESTING ONLY!
+												# comment/remove before deploying to production
+											-->					
+											<button type="submit" name="submit" class="btn btn-success btn-lg">
 												Upload
 											</button>
 
+											<!-- Button trigger modal -->
+											<!--
+
+												<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#exampleModal">
+													Upload
+												</button> 
+											-->
+
 											<!-- Modal -->
-											<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-												<div class="modal-dialog" role="document">
-													<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-														<span aria-hidden="true">&times;</span>
-														</button>
+											<!-- 											
+												<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+													<div class="modal-dialog" role="document">
+														<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body">
+															...
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+															<button type="button" class="btn btn-primary">Save changes</button>
+														</div>
+														</div>
 													</div>
-													<div class="modal-body">
-														...
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-														<button type="button" class="btn btn-primary">Save changes</button>
-													</div>
-													</div>
-												</div>
-											</div>
+												</div> 
+											-->
 										</div>
 									</div>
 								</div>
@@ -320,6 +345,9 @@
 										case 7:
 											$target_dir .= "grade7/";
 											break;
+										case -1:
+											$target_dir .= "test/";
+											break;
 										}
 									
 									switch ($subject) {
@@ -331,6 +359,9 @@
 											break;
 										case "mathematics":
 											$target_dir .= "mathematics/";
+											break;
+										case "test":
+											$target_dir .= "";
 											break;
 										}
 
@@ -382,6 +413,7 @@
 										</div>";
 									}
 
+									/*
 									// create update log file
 									$logFile = fopen($target_file . ".json", "w")
 										or 
@@ -397,11 +429,13 @@
 										"subject" => $subject,
 										"developer" => $name
 									];
+									
 									fwrite($logFile, json_encode($logDict));
 									fclose($logFile);
 									echo "<div class='alert alert-success alert-dismissible fade show my-2 p-2 text-center' role='alert'>
 											log file generated!
-										</div>";
+										</div>"; 
+									*/
 								}
 								?>
 			  
